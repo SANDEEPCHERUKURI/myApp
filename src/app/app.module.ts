@@ -12,7 +12,8 @@ import {PopupModule} from 'ng2-opd-popup';
 import { BootstrapModalModule } from 'ng2-bootstrap-modal';
 import { LocalStorageModule } from 'angular-2-local-storage';
 import { ViewcommentComponent } from './viewcomment/viewcomment.component';
-import {DATATestService} from './data-test.service';
+import {MainService} from './main.server';
+import {TranslateModule} from "ng2-translate";
 @NgModule({
   declarations: [
     AppComponent,
@@ -30,9 +31,10 @@ import {DATATestService} from './data-test.service';
     BootstrapModalModule.forRoot({container:document.body}),
     LocalStorageModule.withConfig({
       prefix: 'my-app',
-      storageType: 'localStorage'})
+      storageType: 'localStorage'}),
+    TranslateModule.forRoot()
   ],
-  providers:[DATATestService],
+  providers:[MainService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

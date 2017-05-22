@@ -1,10 +1,8 @@
 import { Component, OnInit,ViewChild } from '@angular/core';
 import {Popup} from 'ng2-opd-popup';
-import {DATATestService} from "../data-test.service";
+import {MainService} from "../main.server";
 import { LocalStorageService } from 'angular-2-local-storage';
 import {Router} from '@angular/router';
-import {count} from "rxjs/operator/count";
-
 @Component({
   selector: 'app-viewcomment',
   templateUrl: './viewcomment.component.html',
@@ -22,18 +20,23 @@ public vComments=[];
 public addComment=false;
 public l:boolean=false;
 public username;
-public commentText:string;
+public commentText:string=null;
 public post_likes=[];
 public total_likes:number=0;
-  constructor(public dataservice: DATATestService,public LocalStorage:LocalStorageService, private Routes:Router) {
-    this.newsData=dataservice.getNewsData();
-    console.log(this.newsData);
-    this.postTitle=dataservice.getPostName();
+public counter:any=0;
+public  viewcontent=[];
+// Geting the data from single istance from the server
+  constructor(public dataservice: MainService,public LocalStorage:LocalStorageService, private Routes:Router) {
+    this.newsData=dataservice.getNewsData();  //this is for to get all the post data
+    console.log(this.newsData);                         // from the main server
+    this.postTitle=dataservice.getPostName();   // Post name from mail server
     console.log(this.postTitle);
-    this.commentData=dataservice.getCommentData();
+    this.commentData=dataservice.getCommentData(); // getting all the comment data for every post
     console.log(this.commentData);
-    this.username=this.LocalStorage.get("id");
-    //alert(this.username);
+    this.username=this.LocalStorage.get("id"); // loacal storage that stores ID
+    if(this.username==null){
+      this.Routes.navigate(['/login']);
+    }
   }
   @ViewChild('popup4') popup4:Popup;
 
@@ -51,11 +54,13 @@ public total_likes:number=0;
               likeby:likeby,
               likeon:likeon
             };
-          this.post_likes.push(likeObj);
-            this.total_likes=this.total_likes+1;
+            if(likeon!=null){
+              this.post_likes.push(likeObj);
+              this.total_likes=this.total_likes+1;
+            }
+
 
         }
-
       }
 
     }
@@ -70,42 +75,47 @@ public total_likes:number=0;
             comon: comon,
             comtxt: comtxt
           };
-          this.vComments.push(commentObject);
-          console.log(this.vComments);
+          if(comtxt!=null){
+            this.vComments.push(commentObject);
+            console.log(this.vComments);
+          }
+
         }
       }
     }
+    this.showaddedComments()
   }
   showcomment=()=>{
     if(this.addComment){
       this.addComment=false;
-    }
+    }                        // this method shows the commentr input field visible
     else{
       this.addComment=true;
     }
   }
-  commentAdd(){
-    alert(this.commentText);
-    if(this.commentText!==null){
-      let cAdd={
+  commentAdd=()=>{
+   // alert(this.commentText);
+    if(this.commentText!==null){ // this method is used to add a comment for paticular post
+      let addCom={
         comby:this.username,
         comon:this.date,
         comtxt:this.commentText
-      }
-      this.vComments.push(cAdd);
+      };
+      this.vComments.push(addCom);
     }
     this.showcomment();
-  }
-  addLike(){
+    this.commentText=null;
+  };
+  addLike=()=>{   // this method is used to add Likes for a particular post
     if(this.l){
       this.total_likes=this.total_likes-1;
       this.l=false;
       let count=0
       for(let lik in this.post_likes){
-       // alert("lik"+lik);
-        count=count+1
+        count=count+1;
+
         if(this.post_likes[lik].likeby==this.username){
-         this.post_likes.splice(count,1);
+         this.post_likes.splice((count-1),1);
         }
       }
     }
@@ -119,19 +129,33 @@ public total_likes:number=0;
       this.post_likes.push(newlike);
     }
   }
-  showPopup4(){
+  showPopup4=()=>{
     this.popup4.options = {
       cancleBtnClass: "btn btn-default",
       confirmBtnClass: "btn btn-default",
       color: "#60B95D",
-      header: "Like for this Post",
+      header: "Like for this Post",   // this method is used to show the popup for likes by whom.
       widthProsentage:35,
       animation: "bounceIn"};
     this.popup4.show(this.popup4.options);
   }
-  logout(){
-    this.LocalStorage.clearAll();
-    this.Routes.navigate(['/login']);
+  logout=()=>{
+    this.LocalStorage.clearAll();  // this method is for to navigate to login page
+    this.Routes.navigate(['/login']); // if he clicks logout button
+  }
+  showaddedComments(){
+    for(let i=this.counter;i<this.vComments.length;i++)
+    {
+      this.viewcontent.push(this.vComments[i]);
+      if(i==this.counter) break;
+    }
+    if(this.vComments.length!=0){
+      this.counter=this.counter+1;
+    }
+
+  }
+  close(){
+    this.popup4.hide();
   }
 
 }

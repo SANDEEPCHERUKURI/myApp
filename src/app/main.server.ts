@@ -1,7 +1,7 @@
 import {Injectable} from "@angular/core";
 import 'rxjs/add/operator/map';
 @Injectable()
-export class DATATestService{
+export class MainService{
   public data;
   public post_title;
   public comment_data;

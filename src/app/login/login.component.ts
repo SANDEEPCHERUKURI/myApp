@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {HTTPTestService} from "./http-login.service"
 import {Router,NavigationExtras} from '@angular/router';
 import { LocalStorageService } from 'angular-2-local-storage';
-
+import {TranslateService} from 'ng2-translate';
 //import {Routes} from  "./app.router";
 //import {RouterModule} from '@angular/router'
 //import {componentFactoryName} from "@angular/compiler";
@@ -22,13 +22,14 @@ export class LoginComponent{
   public userPassword;
   public userName;
  // private  user_name:DATATestService
-  constructor(public _httpService:HTTPTestService,private Routes:Router,public localStorageService: LocalStorageService) {
+  constructor(public _httpService:HTTPTestService,private Routes:Router,public localStorageService: LocalStorageService,public translate:TranslateService) {
     this._httpService.getlogindata()
       .subscribe(login => this.login = login,
         error => alert(error),
         () => console.log("Finished")
       );
-    this._httpService.getUserListMethod();
+    translate.setDefaultLang('en');
+
   }
 //   const routes =[
 //     path= 'news',
@@ -42,7 +43,6 @@ export class LoginComponent{
     this.userPassword;
     for(let i =0;i<this.login.length;i++){
       if((this.login[i].name==this.userName) && (this.login[i].passord==this.userPassword)){
-        //alert("ok");
         flag=0;
         let navigationExtras: NavigationExtras = {
           queryParams: {

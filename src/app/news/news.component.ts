@@ -1,7 +1,7 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {Popup} from 'ng2-opd-popup';
 import {HTTPService} from "./http-test.service";
-import {DATATestService} from "../data-test.service"
+import {MainService} from "../main.server"
 /*
  import {wrapProgram} from "tslint";
  import {ActivatedRoute} from "@angular/router";
@@ -24,35 +24,34 @@ export class NewsComponent implements OnInit{
  // @Input() name: string;
   public date = new Date();
   public tit:string="";
-  public com_com="";
   public post:string="";
-  //public User_name;
   public userDate= new Date();
   public data;
   public news;
   public com;
-  public com_title;
-  public comment1;
-  public  ki;
   public login;
   public c;
   //public f_user;
-  constructor(public _httpService: HTTPService,private Routes:Router,public LocalStorage:LocalStorageService, public dataservice:DATATestService) {
+  constructor(public _httpService: HTTPService,private Routes:Router,public LocalStorage:LocalStorageService, public dataservice:MainService) {
 
     this._httpService.getNewsdata()
       .subscribe(data => this.data = data,
-        error => alert(error),
-        () => console.log(this.data)
+        error => alert(error),               // Getting all the news(Post)data
+        () => console.log(this.data)              // from service
       );
     this._httpService.getcommdata()
-      .subscribe(com => this.com = com,
-        error => alert(error),
+      .subscribe(com => this.com = com,     // Getting all the comment data for all the news(Post)
+        error => alert(error),                            // from service
         () => console.log("Finished2"));
-    this._httpService.getlogindata()
+    this._httpService.getlogindata()    // Getting all the login data from service
       .subscribe(login=>this.login=login,
       error=>alert(error),
         ()=> console.log("Finished3"));
-    this.c =  this.LocalStorage.get("id");
+    this.c =  this.LocalStorage.get("id"); // by using local storage I strored id as username
+    if(this.c==null){
+      this.Routes.navigate(['/login'])
+
+    }
   }
   ngOnInit(){
     // this.route.queryParams.subscribe(params => {
@@ -61,8 +60,8 @@ export class NewsComponent implements OnInit{
 
   }
   @ViewChild('popup1') popup1: Popup;
-  @ViewChild('popup2') popup2: Popup;
-  @ViewChild('popup3') popup3: Popup;
+  @ViewChild('popup2') popup2: Popup; // @viewchild is imported from the @angular and also in
+  @ViewChild('popup3') popup3: Popup;                        // pop -opd
   @ViewChild('popup4') popup4:Popup;
   validate(){
     //alert(this.f_user);
@@ -72,6 +71,7 @@ export class NewsComponent implements OnInit{
       }
     }
   }
+  // this method is used for adding the new post in the array of objects
   addPost=()=>{
     let n=false;
     n=this.validate();
@@ -83,16 +83,16 @@ export class NewsComponent implements OnInit{
         postBy:this.c,
         poston:this.userDate,
         likes:[{
-          likeby:"",
-          likeon:"",
+          likeby:null,
+          likeon:null,
         }]
       };
       let obj1={
         title:this.tit,
         comment:[{
-          comtext:"",
-          comby:"",
-          comon:"",
+          comtext:null,
+          comby:null,
+          comon:null,
         }]
       };
       this.com.push(obj1);
@@ -107,7 +107,7 @@ export class NewsComponent implements OnInit{
   }
 
   clear=()=>{
-    this.tit="";
+    this.tit=""; // clear when after closing the popup
     //alert(this.tit);
     this.post="";
     // (<HTMLInputElement>document.getElementById("tit")).value="";
@@ -120,15 +120,15 @@ export class NewsComponent implements OnInit{
       cancleBtnClass: "btn btn-default",
       confirmBtnClass: "btn btn-mbe-attack ",
       color: "#60B95D",
-      header: "My New Post.......",
-      widthProsentage:50,
+      header: "My New Post.......", // this method is for the pop up for creating a new
+      widthProsentage:50,                 // news feed(POST)
       animation: "bounceInDown",
       confirmBtnContent: "Post!",
       cancleBtnContent:"cancel"
     };
     this.popup1.show(this.popup1.options);
   }
-
+// its is default methods for popup-opt pluging options & properties
   showPopup4(){
     this.popup4.options = {
       cancleBtnClass: "btn btn-default",  // This Method is to show th pop for add the new post
@@ -139,14 +139,19 @@ export class NewsComponent implements OnInit{
       animation: "bounceIn"};
     this.popup4.show(this.popup4.options);
   }
+  // logout button for newsfeed post
   logout(){
-    this.LocalStorage.clearAll();
+    this.LocalStorage.clearAll(); // it clears all the local storage date
     this.Routes.navigate(['/login']);
 
   }
+  // by clicking view-post button it navigates to new page called /viewpost
   viewpost=(post_title)=>{
     this.dataservice.setNewsData(post_title,this.data,this.com);
     this.Routes.navigate(['/viewpost'])
+  }
+  closepop(){
+    this.popup4.hide();
   }
 
 }
