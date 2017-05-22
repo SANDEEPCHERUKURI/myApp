@@ -9,7 +9,6 @@ export class DATATestService{
 
   }
   setNewsData(post_name,newsData:any,comData:any){
-    //console.log(newsData)
     this.data=newsData;
     this.post_title=post_name;
     this.comment_data=comData;

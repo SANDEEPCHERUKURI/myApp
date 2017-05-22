@@ -23,7 +23,7 @@ export class LoginComponent{
   public userName;
  // private  user_name:DATATestService
   constructor(public _httpService:HTTPTestService,private Routes:Router,public localStorageService: LocalStorageService) {
-    this._httpService.getjsondata()
+    this._httpService.getlogindata()
       .subscribe(login => this.login = login,
         error => alert(error),
         () => console.log("Finished")

@@ -13,7 +13,7 @@ export class HTTPTestService {
 
   }
 
-  getjsondata() {
+  getlogindata() {
     return this._http.get('assets/login.json')
       .map(res => res.json());
   }
