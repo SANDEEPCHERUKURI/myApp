@@ -1,0 +1,58 @@
+[
+  {
+    "title":"Hello",
+    "post":"I am ok Now",
+    "postBy":"Kiran",
+    "poston": "Fri May 19 2017 13:42:38 GMT+0530 (IST)",
+    "likes":[{
+      "likeby":"Kavya",
+      "likeon":"Fri May 19 2017 13:42:38 GMT+0530 (IST)"
+      },
+      {
+        "likeby":"Radha",
+        "likeon":"Fri May 19 2017 13:42:38 GMT+0530 (IST)"
+      },
+      {
+        "likeby":"Spandhana",
+        "likeon":"Fri May 19 2017 13:42:38 GMT+0530 (IST)"
+      },
+      {
+        "likeby":"Anoosha",
+        "likeon":"Fri May 19 2017 13:42:38 GMT+0530 (IST)"
+      },
+      {
+        "likeby":"NagaSri",
+        "likeon":"Fri May 19 2017 13:42:38 GMT+0530 (IST)"
+      }
+      ]
+
+  },
+  {
+    "title":"NewsToday",
+    "post":"this is sandeep i am from hyd",
+    "postBy":"Rahul",
+    "poston" : "Fri May 19 2017 13:42:38 GMT+0530 (IST)",
+    "likes":[{
+      "likeby":"Anusha",
+      "likeon":"Fri May 19 2017 13:42:38 GMT+0530 (IST)"
+    },
+      {
+        "likeby":"Mounica",
+        "likeon":"Fri May 19 2017 13:42:38 GMT+0530 (IST)"
+      },
+      {
+        "likeby":"Satya",
+        "likeon":"Fri May 19 2017 13:42:38 GMT+0530 (IST)"
+      },
+      {
+        "likeby":"Vydehi",
+        "likeon":"Fri May 19 2017 13:42:38 GMT+0530 (IST)"
+      },
+      {
+        "likeby":"Vakula",
+        "likeon":"Fri May 19 2017 13:42:38 GMT+0530 (IST)"
+      }
+    ]
+  }
+
+]

@@ -1,0 +1,24 @@
+
+
+<!--Pulling Awesome Font -->
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-offset-4 col-md-5">
+      <div class="form-login">
+        <h2>Welcome back.</h2>
+        <input type="text" id="userName" name="userName" [(ngModel)]="userName" class="form-control input-sm chat-input" placeholder="username" />
+        <br>
+        <input type="password" id="userPassword" name="userPassword" [(ngModel)]="userPassword" class="form-control input-sm chat-input" placeholder="password" />
+        <br>
+        <div class="wrapper">
+            <span class="group-btn">
+                <button class="btn btn-primary btn-md" (click)="valid()">login <i class="fa fa-sign-in"></i></button >
+            </span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
