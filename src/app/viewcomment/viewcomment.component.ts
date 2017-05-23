@@ -4,6 +4,7 @@ import {MainService} from "../main.server";
 import { LocalStorageService } from 'angular-2-local-storage';
 import {Router} from '@angular/router';
 import {TranslateService} from '@ngx-translate/core';
+import {count} from "rxjs/operator/count";
 @Component({
   selector: 'app-viewcomment',
   templateUrl: './viewcomment.component.html',
@@ -11,6 +12,9 @@ import {TranslateService} from '@ngx-translate/core';
 })
 export class ViewcommentComponent implements OnInit {
 public newsData;
+public showmore:string;
+public commentsShow=[];
+public commentcout:any=0;
 public viewPoston;
 public date=new Date();
 public postTitle;
@@ -87,7 +91,9 @@ public  viewcontent=[];
         }
       }
     }
-    this.showaddedComments()
+  //  this.showaddedComments();
+    this.viewComments(0)
+
   }
   showcomment=()=>{
     if(this.addComment){
@@ -147,16 +153,51 @@ public  viewcontent=[];
     this.LocalStorage.clearAll();  // this method is for to navigate to login page
     this.Routes.navigate(['/login']); // if he clicks logout button
   }
-  showaddedComments(){
-    for(let i=this.counter;i<this.vComments.length;i++)
-    {
-      this.viewcontent.push(this.vComments[i]);
-      if(i==this.counter) break;
+  // showaddedComments(){
+  //
+  //   for(let i=this.counter;i<this.vComments.length;i++)
+  //   {
+  //     this.viewcontent.push(this.vComments[i]);
+  //     if(i==this.counter) break;
+  //   }
+  //   if(this.vComments.length!=0){
+  //   this.showmore="View More";
+  //     this.counter=this.counter+1;
+  //   }
+  //   else {
+  //     this.showmore="View Less";
+  //   }
+  //
+  // }
+  public count:number=0;
+  viewComments(x:number) {
+    if (x == 0) {
+      if(this.commentcout == this.vComments.length){
+        this.commentcout=0;
+        this.count=0;
+        this.commentsShow=[];
+      }
+      for (let i = this.commentcout; i < this.vComments.length; i++) {
+        let k = this.vComments[i];
+        this.commentsShow.push(k);
+        this.count = this.count + 1;
+        if (this.count == 1) {
+          this.commentcout = 1;
+          break;
+        }
+        if (this.count == this.vComments.length) {
+          this.commentcout = this.count;
+          break;
+        }
+      }
     }
-    if(this.vComments.length!=0){
-      this.counter=this.counter+1;
+    else{
+      this.commentsShow=[];
+        let k =this.vComments[0];
+        this.commentsShow.push(k);
+        this.count=0;
+      this.viewComments(0);
     }
-
   }
   close(){
     this.popup4.hide();

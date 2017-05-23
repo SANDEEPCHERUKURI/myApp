@@ -40,18 +40,28 @@
   <div *ngIf="vComments.comtxt!==null">
   <div class="col-md-2 col-lg-2"></div>
   <div class="col-md-8 col-lg-8 col-sm-12">
-  <div *ngFor="let viewCom of viewcontent">
+  <div *ngFor="let viewCom of commentsShow; let i =index">
     <ul class="list-group">
       <li class="list-group-item">
         <h4>{{viewCom.comby}}:</h4><h6>{{viewCom.comtxt}}</h6> <span class="label label-success pull-right">{{viewCom.comon | date:'medium'}}</span>
       </li>
     </ul>
   </div>
-    <li class="showmore list-group-item">
-      <button class="btn btn-success show-more" (click)="showaddedComments()" [disabled]="counter>=vComments.length">
-        {{'show_more'|translate}}
-      </button>
-    </li>
+
+    <div *ngIf="count < vComments.length">
+      <li class="showmore list-group-item">
+        <button class="btn btn-success show-more" (click)="viewComments(0)">
+          Show More
+        </button>
+      </li>
+    </div>
+    <div *ngIf="count >= vComments.length">
+      <li class="showmore list-group-item">
+        <button class="btn btn-success show-more" (click)="viewComments(1)">
+          Show Less
+        </button>
+      </li>
+    </div>
   </div>
 </div>
 </div>
