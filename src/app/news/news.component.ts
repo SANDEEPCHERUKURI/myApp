@@ -15,6 +15,7 @@ import { LocalStorageService } from 'angular-2-local-storage';
  */
 /*import {DATATestService} from "../data-test.service"*/
 /*import {error} from "util";*/
+/*.............*/
 @Component({
   selector: 'app-news',
   templateUrl: './news.component.html',
