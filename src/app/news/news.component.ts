@@ -1,7 +1,8 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {Popup} from 'ng2-opd-popup';
 import {HTTPService} from "./http-test.service";
-import {MainService} from "../main.server"
+import {MainService} from "../main.server";
+import {TranslateService} from '@ngx-translate/core';
 /*
  import {wrapProgram} from "tslint";
  import {ActivatedRoute} from "@angular/router";
@@ -32,7 +33,7 @@ export class NewsComponent implements OnInit{
   public login;
   public c;
   //public f_user;
-  constructor(public _httpService: HTTPService,private Routes:Router,public LocalStorage:LocalStorageService, public dataservice:MainService) {
+  constructor(public _httpService: HTTPService,private Routes:Router,public LocalStorage:LocalStorageService, public dataservice:MainService,public translate:TranslateService) {
 
     this._httpService.getNewsdata()
       .subscribe(data => this.data = data,
@@ -47,11 +48,15 @@ export class NewsComponent implements OnInit{
       .subscribe(login=>this.login=login,
       error=>alert(error),
         ()=> console.log("Finished3"));
+    translate.addLangs(['en']);
+    translate.setDefaultLang('en');
+    translate.use('en');
     this.c =  this.LocalStorage.get("id"); // by using local storage I strored id as username
     if(this.c==null){
       this.Routes.navigate(['/login'])
 
     }
+
   }
   ngOnInit(){
     // this.route.queryParams.subscribe(params => {

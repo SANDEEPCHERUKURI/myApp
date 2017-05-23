@@ -8,13 +8,13 @@
     <div class="col-md-offset-4 col-md-5">
       <div class="form-login">
         <h1 class="text-center">{{'TITLE' | translate}}</h1>
-        <input type="text" id="userName" name="userName" [(ngModel)]="userName" class="form-control input-sm chat-input" placeholder="username" />
+        <input type="text" id="userName" name="userName" [(ngModel)]="userName" class="form-control input-sm chat-input" placeholder="{{'login_username' | translate }}" />
         <br>
-        <input type="password" id="userPassword" name="userPassword" [(ngModel)]="userPassword" class="form-control input-sm chat-input" placeholder="password" />
+        <input type="password" id="userPassword" name="userPassword" [(ngModel)]="userPassword" class="form-control input-sm chat-input" placeholder="{{'login_password' | translate}}" />
         <br>
         <div class="wrapper">
             <span class="group-btn">
-                <button class="btn btn-primary btn-md" (click)="valid()">login <i class="fa fa-sign-in"></i></button >
+                <button class="btn btn-primary btn-md" (click)="valid()">{{'login_btn'|translate }} <i class="fa fa-sign-in"></i></button >
             </span>
         </div>
       </div>

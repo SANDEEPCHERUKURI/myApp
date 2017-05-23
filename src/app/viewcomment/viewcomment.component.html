@@ -1,21 +1,21 @@
 <div class="mt-2 ml-3">
 <div class="jumbotron text-center">
-  <button class="btn btn-danger pull-right" (click)="logout()">LogOut</button>
+  <button class="btn btn-danger pull-right" (click)="logout()">{{'logout'|translate}}</button>
   <h1>{{postTitle}}</h1>
-  <h3>Posted By:  {{viewPostBy}}</h3>
-  <h4>Posted On:  {{viewPoston}}</h4>
+  <h3>{{'postedby' |translate}}:  {{viewPostBy}}</h3>
+  <h4>{{'postedon'|translate}}:  {{viewPoston}}</h4>
 </div>
 <div class="panel panel-default">
   <div class="panel-body"><h3>{{viewPostcontect}}
   </h3></div>
 </div>
 <div class="col-lg-5">
-  <button class="btn-success" (click)="showPopup4()"> View all the Likes</button>
+  <button class="btn-success" (click)="showPopup4()"> {{'list_likes'|translate}}</button>
 </div>
 <br>
 <button class="btn btn-blog btn-success pull-left marginBottom10" (click)="addLike()" ><span class="glyphicon glyphicon-thumbs-up"></span>{{total_likes}}</button>
 <div class="col-lg-5">
-<button class="btn btn-blog btn-success pull-left marginBottom10" (click)="showcomment()">ADD COMMENTS</button>
+<button class="btn btn-blog btn-success pull-left marginBottom10" (click)="showcomment()">{{'add_comment'|translate}}</button>
 </div>
   <br>
 <br>
@@ -27,7 +27,7 @@
   <div class="input-group">
     <input type="text" class="form-control" name="commentText" [(ngModel)]="commentText" placeholder="Please Enter Your Comment">
     <span class="input-group-btn">
-        <button class="btn btn-secondary" type="button" (click)="commentAdd()">Post!</button>
+        <button class="btn btn-success" type="button" (click)="commentAdd()">{{'post'|translate}}!</button>
       </span>
   </div>
 </div>
@@ -49,7 +49,7 @@
   </div>
     <li class="showmore list-group-item">
       <button class="btn btn-success show-more" (click)="showaddedComments()" [disabled]="counter>=vComments.length">
-        Show more
+        {{'show_more'|translate}}
       </button>
     </li>
   </div>

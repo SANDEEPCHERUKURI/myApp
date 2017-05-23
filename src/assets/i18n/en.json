@@ -1,0 +1,18 @@
+{
+    "TITLE": "WELCOME",
+    "login_username":"please enter your name",
+    "login_password":"please enter your password",
+    "login_btn" : "login",
+    "news_title":"Welcome",
+    "mr":"Mr.",
+    "create_new_post":"Compose News Feed",
+    "logout" : "Sign Out",
+    "open_post":"VIEW THIS POST",
+    "posted" : "Posted",
+    "postedby":"Posted By",
+    "postedon":"Posted On",
+    "list_likes":"View all the Likes",
+    "add_comment":"ADD COMMENT",
+    "post":"Post",
+    "show_more":"Show More"
+}

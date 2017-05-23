@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {HTTPTestService} from "./http-login.service"
 import {Router,NavigationExtras} from '@angular/router';
 import { LocalStorageService } from 'angular-2-local-storage';
-import {TranslateService} from 'ng2-translate';
+import {TranslateService} from '@ngx-translate/core';
 //import {Routes} from  "./app.router";
 //import {RouterModule} from '@angular/router'
 //import {componentFactoryName} from "@angular/compiler";
@@ -22,13 +22,16 @@ export class LoginComponent{
   public userPassword;
   public userName;
  // private  user_name:DATATestService
-  constructor(public _httpService:HTTPTestService,private Routes:Router,public localStorageService: LocalStorageService,public translate:TranslateService) {
+  constructor(public _httpService:HTTPTestService,private Routes:Router,public localStorageService: LocalStorageService,private translate:TranslateService) {
     this._httpService.getlogindata()
       .subscribe(login => this.login = login,
         error => alert(error),
         () => console.log("Finished")
       );
+
+    translate.addLangs(['en']);
     translate.setDefaultLang('en');
+    translate.use('en');
 
   }
 //   const routes =[

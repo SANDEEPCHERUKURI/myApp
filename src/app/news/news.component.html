@@ -1,5 +1,5 @@
 <h1>
-  Welcome Mr.{{this.c | uppercase}}
+  {{'news_title' | translate}} {{'mr' | translate}}{{this.c | uppercase}}
 </h1>
 <div class="container">
   <div id="blog" class="row">
@@ -7,9 +7,9 @@
       <nav class="nav-sidebar">
         <ul class="nav">
           <br>
-          <li><button class="btn btn-success" (click)="showPopup1()" >Compose News Feed</button></li>
+          <li><button class="btn btn-success" (click)="showPopup1()" >{{'create_new_post' | translate}}</button></li>
           <li class="nav-divider"></li>
-          <li><button class="btn btn-success" (click)="logout()"><i class="glyphicon glyphicon-off"></i> Sign Out</button></li>
+          <li><button class="btn btn-success" (click)="logout()"><i class="glyphicon glyphicon-off"></i>{{'logout' | translate}}</button></li>
         </ul>
       </nav>
       <!-- <div><h2 class="add"></h2></div>-->
@@ -18,7 +18,7 @@
       <div class="row">
         <h5>
           <h2>{{i.postBy}}</h2>
-          Posted
+          {{'posted'|translate}}
         </h5>
       </div>
       <h3>{{i.title}}</h3>
@@ -26,7 +26,7 @@
         <p>{{i.post}}
         </p>
       </article>
-      <button class="btn btn-blog pull-right marginBottom10" (click)="viewpost(i.title)">VIEW THIS POST</button>
+      <button class="btn btn-blog pull-right marginBottom10" (click)="viewpost(i.title)">{{'open_post' | translate}}</button>
 
     </div>
   </div>

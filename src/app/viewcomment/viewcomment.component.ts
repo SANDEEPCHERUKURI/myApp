@@ -3,6 +3,7 @@ import {Popup} from 'ng2-opd-popup';
 import {MainService} from "../main.server";
 import { LocalStorageService } from 'angular-2-local-storage';
 import {Router} from '@angular/router';
+import {TranslateService} from '@ngx-translate/core';
 @Component({
   selector: 'app-viewcomment',
   templateUrl: './viewcomment.component.html',
@@ -26,13 +27,16 @@ public total_likes:number=0;
 public counter:any=0;
 public  viewcontent=[];
 // Geting the data from single istance from the server
-  constructor(public dataservice: MainService,public LocalStorage:LocalStorageService, private Routes:Router) {
+  constructor(public dataservice: MainService,public LocalStorage:LocalStorageService, private Routes:Router,public translate:TranslateService) {
     this.newsData=dataservice.getNewsData();  //this is for to get all the post data
     console.log(this.newsData);                         // from the main server
     this.postTitle=dataservice.getPostName();   // Post name from mail server
     console.log(this.postTitle);
     this.commentData=dataservice.getCommentData(); // getting all the comment data for every post
     console.log(this.commentData);
+    translate.addLangs(['en']);
+    translate.setDefaultLang('en');
+    translate.use('en');
     this.username=this.LocalStorage.get("id"); // loacal storage that stores ID
     if(this.username==null){
       this.Routes.navigate(['/login']);
