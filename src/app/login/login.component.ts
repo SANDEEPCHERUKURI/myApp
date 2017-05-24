@@ -15,7 +15,6 @@ import {TranslateService} from '@ngx-translate/core';
   providers:[ HTTPTestService ]
 })
 export class LoginComponent{
-  //private Routes:any;
   private errMsg1: string;
   private userListReceived=[];
   public login;
@@ -39,7 +38,7 @@ export class LoginComponent{
 //   componente = news
 // ]
 
-  valid(){
+  valid=()=>{
     let flag=0;
     //alert("valid()")
     this.userName;

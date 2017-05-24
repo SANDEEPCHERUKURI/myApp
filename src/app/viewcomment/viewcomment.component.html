@@ -3,7 +3,7 @@
   <button class="btn btn-danger pull-right" (click)="logout()">{{'logout'|translate}}</button>
   <h1>{{postTitle}}</h1>
   <h3>{{'postedby' |translate}}:  {{viewPostBy}}</h3>
-  <h4>{{'postedon'|translate}}:  {{viewPoston}}</h4>
+  <h4>{{'postedon'|translate}}:  {{viewPoston | date:'medium'}}</h4>
 </div>
 <div class="panel panel-default">
   <div class="panel-body"><h3>{{viewPostcontect}}
@@ -57,7 +57,7 @@
     </div>
     <div *ngIf="count >= vComments.length">
       <li class="showmore list-group-item">
-        <button class="btn btn-success show-more" (click)="viewComments(1)">
+        <button class="btn btn-success show-more" (click)="viewComments(1) [disabled]=count==vComments.length">
           Show Less
         </button>
       </li>
@@ -72,8 +72,8 @@
       <div class="col-lg-6" *ngFor="let clike of post_likes ">
         <ul class="list-group">
           <li class="list-group-item">
-            <h6>{{clike.likeby}}</h6>
-            <span class="label label-success pull-right">{{clike.likeon |date:'medium'}}</span>
+            <h6><span class="glyphicon glyphicon-user">:</span>{{clike.likeby}}</h6>
+            <span class=" label label-success pull-right">{{clike.likeon |date:'medium'}}</span>
           </li>
         </ul>
 

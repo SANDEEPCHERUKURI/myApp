@@ -120,7 +120,7 @@ public  viewcontent=[];
     if(this.l){
       this.total_likes=this.total_likes-1;
       this.l=false;
-      let count=0
+      let count=0;
       for(let lik in this.post_likes){
         count=count+1;
 
@@ -146,6 +146,7 @@ public  viewcontent=[];
       color: "#60B95D",
       header: "Like for this Post",   // this method is used to show the popup for likes by whom.
       widthProsentage:35,
+      cancleBtnContent:"Cancel",
       animation: "bounceIn"};
     this.popup4.show(this.popup4.options);
   }
@@ -170,7 +171,7 @@ public  viewcontent=[];
   //
   // }
   public count:number=0;
-  viewComments(x:number) {
+  viewComments=(x:number)=> {
     if (x == 0) {
       if(this.commentcout == this.vComments.length){
         this.commentcout=0;
@@ -199,7 +200,7 @@ public  viewcontent=[];
       this.viewComments(0);
     }
   }
-  close(){
+  close=()=>{
     this.popup4.hide();
   }
 

@@ -3,19 +3,8 @@ import {Popup} from 'ng2-opd-popup';
 import {HTTPService} from "./http-test.service";
 import {MainService} from "../main.server";
 import {TranslateService} from '@ngx-translate/core';
-/*
- import {wrapProgram} from "tslint";
- import {ActivatedRoute} from "@angular/router";
- */
 import {Router,NavigationExtras} from '@angular/router';
 import { LocalStorageService } from 'angular-2-local-storage';
-/*
- import {validate} from "codelyzer/walkerFactory/walkerFn";
- import { LoginComponent } from '../login/login.component';
- */
-/*import {DATATestService} from "../data-test.service"*/
-/*import {error} from "util";*/
-/*.............*/
 @Component({
   selector: 'app-news',
   templateUrl: './news.component.html',
@@ -23,7 +12,6 @@ import { LocalStorageService } from 'angular-2-local-storage';
   providers:[HTTPService]
 })
 export class NewsComponent implements OnInit{
- // @Input() name: string;
   public date = new Date();
   public tit:string="";
   public post:string="";
@@ -121,7 +109,7 @@ export class NewsComponent implements OnInit{
 
   }
 
-  showPopup1(){
+  showPopup1=()=>{
     this.popup1.options = {
       cancleBtnClass: "btn btn-default",
       confirmBtnClass: "btn btn-mbe-attack ",
@@ -135,7 +123,7 @@ export class NewsComponent implements OnInit{
     this.popup1.show(this.popup1.options);
   }
 // its is default methods for popup-opt pluging options & properties
-  showPopup4(){
+  showPopup4=()=>{
     this.popup4.options = {
       cancleBtnClass: "btn btn-default",  // This Method is to show th pop for add the new post
       confirmBtnClass: "btn btn-default",
@@ -146,7 +134,7 @@ export class NewsComponent implements OnInit{
     this.popup4.show(this.popup4.options);
   }
   // logout button for newsfeed post
-  logout(){
+  logout=()=>{
     this.LocalStorage.clearAll(); // it clears all the local storage date
     this.Routes.navigate(['/login']);
 
